@@ -1,8 +1,10 @@
 # Python-GPACalculator
-A GPA Calculator that currently uses terminal to work, but will soon turn into an app.
+This is a GPA Calculator which is a command-line tool that allows users to calculate their grade point average (GPA) based on their course grades and credit hours. The tool is designed to be user-friendly and easy to use.
+
+At its core, this GPA Calculator is a Python script that takes input from the user (currently through a file) and performs the necessary calculations to determine their GPA. The user inputs their course grades and credit hours, and the script calculates their weighted average and displays their GPA on the terminal.
 
 # DIRECTIONS:
-Please fill out the following for each class:
+Please fill out the following for each class in classes.py:
 - Name of the course
 - Credit value of the course
 - Level of course:

@@ -7,6 +7,7 @@ class course:
         self.final = course.get('final', 0)
         self.credits = course['credits']
         self.level = course['level']
+        self.letter = "F"
         if self.credits < 5:
             self.fullYear = False
         else:
@@ -15,6 +16,7 @@ class course:
     def getValue(self, grade):
         value = 0 # F
         if grade >= 97.5: # A+
+            self.letter = "A+"
             if self.level == 'A':
                 value = 4.3
             elif self.level == 'H':
@@ -22,6 +24,7 @@ class course:
             elif self.level == 'AP':
                 value = 5.375
         elif grade >= 91.5: # A
+            self.letter = "A"
             if self.level == 'A':
                 value = 4
             elif self.level == 'H':
@@ -29,6 +32,7 @@ class course:
             elif self.level == 'AP':
                 value = 5
         elif grade >= 89.5: # A-
+            self.letter = "A-"
             if self.level == 'A':
                 value = 3.7
             elif self.level == 'H':
@@ -36,6 +40,7 @@ class course:
             elif self.level == 'AP':
                 value = 4.625
         elif grade >= 85.5: # B+
+            self.letter = "B+"
             if self.level == 'A':
                 value = 3.3
             elif self.level == 'H':
@@ -43,6 +48,7 @@ class course:
             elif self.level == 'AP':
                 value = 4.125
         elif grade >= 81.5: # B
+            self.letter = "B"
             if self.level == 'A':
                 value = 3
             elif self.level == 'H':
@@ -50,6 +56,7 @@ class course:
             elif self.level == 'AP':
                 value = 3.75
         elif grade >= 79.5: # B-
+            self.letter = "B-"
             if self.level == 'A':
                 value = 2.7
             elif self.level == 'H':
@@ -57,6 +64,7 @@ class course:
             elif self.level == 'AP':
                 value = 3.375
         elif grade >= 75.5: # C+
+            self.letter = "C+"
             if self.level == 'A':
                 value = 2.3
             elif self.level == 'H':
@@ -64,6 +72,7 @@ class course:
             elif self.level == 'AP':
                 value = 2.875
         elif grade >= 71.5: # C
+            self.letter = "C"
             if self.level == 'A':
                 value = 2
             elif self.level == 'H':
@@ -71,6 +80,7 @@ class course:
             elif self.level == 'AP':
                 value = 2.5
         elif grade >= 69.5: # C-
+            self.letter = "C-"
             if self.level == 'A':
                 value = 1.7
             elif self.level == 'H':
@@ -78,6 +88,7 @@ class course:
             elif self.level == 'AP':
                 value = 2.125
         elif grade >= 65.5: # D+
+            self.letter = "D+"
             if self.level == 'A':
                 value = 1.3
             elif self.level == 'H':
@@ -85,6 +96,7 @@ class course:
             elif self.level == 'AP':
                 value = 1.625
         elif grade >= 61.5: # D
+            self.letter = "D"
             if self.level == 'A':
                 value = 1
             elif self.level == 'H':
@@ -92,6 +104,7 @@ class course:
             elif self.level == 'AP':
                 value = 1.25
         elif grade >= 59.5:  # D-
+            self.letter = "D-"
             if self.level == 'A':
                 value = 0.7
             elif self.level == 'H':
@@ -99,34 +112,6 @@ class course:
             elif self.level == 'AP':
                 value = 0.875
         return value
-
-    def getLetter(self, grade):
-        letter = "F"
-        if grade >= 97.5: # A+
-            letter = "A+"
-        elif grade >= 91.5: # A
-            letter = "A"
-        elif grade >= 89.5: # A-
-            letter = "A-"
-        elif grade >= 85.5: # B+
-            letter = "B+"
-        elif grade >= 81.5: # B
-            letter = "B"
-        elif grade >= 79.5: # B-
-            letter = "B-"
-        elif grade >= 75.5: # C+
-            letter = "C+"
-        elif grade >= 71.5: # C
-            letter = "C"
-        elif grade >= 69.5: # C-
-            letter = "C-"
-        elif grade >= 65.5: # D+
-            letter = "D+"
-        elif grade >= 61.5: # D
-            letter = "D"
-        elif grade >= 59.5:  # D-
-            letter = "D-"
-        return letter
 
     def getFinalGrade(self):
         nonZeros = 0
@@ -229,7 +214,7 @@ for course in classes:
     if len(course.name) < 15:
         print("\t", end="");
     
-    print(str(round(course.getFinalGrade(), 2)) + "  " + course.getLetter(course.getFinalGrade()), end="")
+    print(str(format(round(course.getFinalGrade(), 2), '.2f')) + "  " + course.letter, end="")
     
     for quarter in range(0, len(course.grades)):
         if (quarter != len(course.grades) - 1):

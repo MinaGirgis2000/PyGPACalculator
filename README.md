@@ -20,31 +20,63 @@ python main.py
 ```
 
 # DIRECTIONS:
-Please fill out the following for each class in classes.py:
-- Name of the course
-- Credit value of the course
-- Level of course:
-  - A: Academic
-  - H: Honors
-  - AP: Advanced Placement
-- Grades:
-  - [MP1, MP2, MP3, MP4]
-- Midterm Grade
-- Final Grade
-- Semester Lab(labSem): if it's an option
-  - 1st or first: 1st semester lab class
-  - 2nd or second: 2nd semester lab class
-  - both: both semesters lab class
-  - none: no lab class
-Please also fillout your previous GPA and credits for preGPA and preCredits
+### Previous GPA and Credits
+In classes.py, you will find:
+```
+preGPA = 0
+preCredits = 0
+```
+Set the values of those variables to the value of your previous GPA and credits from your classes from your previous school years.
+- If you were not in High School last year then this does not apply to you, leave it as 0
 
-If you did not get your GPA yet, make it equal to 0.
-There is a limit of 8 classes for each person for now. Contact Mina Girgis if you would like to input more classes.
-PLEASE do not mess up the format or change any variable or file names.
+### Class Information
+In classes.py, you will also find:
+```
+class# = {'name': "example-Name#",
+          'credits': 0,
+          'level': 'A',
+          'grades': [0, 0, 0, 0],
+          'midterm': 0,
+          'final': 0,
+          'labSem': "none"  # <-- Can delete from template or put "none" if not applicable to your class.
+          } 
+```
+###### PLEASE REFRAIN FROM CHANGING THE DICTIONARY NAMES FOR ANY OF THE CLASS TEMPLATES
+
+Please fill out the following for each class:
+- name: name of the course
+- credits: credit value of the course
+- level: course level
+  - "A": Academic
+  - "H": Honors
+  - "AP": Advanced Placement
+- grades: all grades from marking periods 1 to 4:
+  - [mp1, mp2, mp3, mp4]
+- midterm: midterm grade
+- final: final grade
+- labSem: lab class (if applicable)
+  - "1st" or "first": 1st semester lab class
+  - "2nd" or "second": 2nd semester lab class
+  - "both": both semesters lab class
+  - "none": no lab class
+
+### Inputing More Than 8 Classes
+- Copy the class template
+- Go into classes.py
+  - Paste the template
+  - Change the name of the variable
+    - Ex: class9, class10, newClass, etc.
+- Go into main.py
+  - Add "GPA.course(classes.(name of variable))" into the classes array on line 6
+  - Ex: GPA.course(classes.class9)
+```
+classes = [GPA.course(classes.class1), GPA.course(classes.class2), GPA.course(classes.class3), GPA.course(classes.class4), 
+           GPA.course(classes.class5), GPA.course(classes.class6), GPA.course(classes.class7), GPA.course(classes.class8), GPA.course(classes.class9)]
+```
 
 # WARNING:
-- I do not gaurantee that this will give you your actual GPA. However I did test 
- this method with past grades and it work successfully.
-- I am not responsible for any problems that occur from this program, it is 
- only used to get your approximate current GPA in a more easier and efficient way.
-- This is still a work in progress
+- DO NOT CHANGE ANY DICTIONARY NAMES FOR THE CLASS TEMPLATES
+- I do not gaurantee that this will give you your actual GPA. However I did test this method with past grades and it work successfully.
+- I am not responsible for any problems that may occur from this program, such as problems with other people or with the computer that the program was run on.
+  - The only use of this is to get your approximate current GPA in a more easier and efficient way.
+- This is still a work in progress, so nothing is guaranteed

@@ -9,11 +9,11 @@ At its core, this GPA Calculator is a Python script that takes input from the us
 ```
 python -V
 ```
-- Access the folder where you have downloaded the script using
+- Access the folder where you have downloaded the script using the following command
+  - You can also use your file manager to copy and paste the file location from the address bar
 ```
 cd (location of file)
 ```
-  - You can also use your file manager to copy and paste the file location from the address bar
 - Run:
 ```
 python main.py

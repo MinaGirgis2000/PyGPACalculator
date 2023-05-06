@@ -41,7 +41,7 @@ class# = {'name': "example-Name#",
           'labSem': "none"  # <-- Can delete from template or put "none" if not applicable to your class.
           } 
 ```
-###### PLEASE REFRAIN FROM CHANGING THE DICTIONARY NAMES FOR ANY OF THE CLASS TEMPLATES
+#### PLEASE REFRAIN FROM CHANGING THE DICTIONARY NAMES FOR ANY OF THE CLASS TEMPLATES
 
 Please fill out the following for each class:
 - name: name of the course

@@ -120,10 +120,12 @@ class course:
             letter = letters[letters.index(letter) - 1]
             return letter + "-"
         elif letter != "F":
-            if grade <= 1.5:
+            if grade < 1.5:
                 return letter + "-"
-            elif grade >= 5.5:
+            elif grade >= 5.5 and firstDigit != 9:
                 return letter + "+"
+            else:
+                return letter
         
         return letter
 

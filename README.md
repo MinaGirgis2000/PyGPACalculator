@@ -61,7 +61,7 @@ Please fill out the following for each class:
   - "none": no lab class
 
 ### Inputing More Than 8 Classes
-- Copy the class template
+- Copy the dictionary template of a class
 - Go into classes.py
   - Paste the template
   - Change the name of the variable

@@ -7,102 +7,29 @@ class course:
         self.final = course.get('final', 0)
         self.credits = course['credits']
         self.level = course['level']
-        self.letter = self.getLetter()
+        self.letter = self.getLetter(self.getFinalGrade())
         if self.credits < 5:
             self.fullYear = False
         else:
             self.fullYear = True
 
     def getValue(self, grade):
-        value = 0 # F
-        if grade >= 97.5: # A+
-            if self.level == 'A':
-                value = 4.3
-            elif self.level == 'H':
-                value = 4.945
-            elif self.level == 'AP':
-                value = 5.375
-        elif grade >= 91.5: # A
-            if self.level == 'A':
-                value = 4
-            elif self.level == 'H':
-                value = 4.6
-            elif self.level == 'AP':
-                value = 5
-        elif grade >= 89.5: # A-
-            if self.level == 'A':
-                value = 3.7
-            elif self.level == 'H':
-                value = 4.255
-            elif self.level == 'AP':
-                value = 4.625
-        elif grade >= 85.5: # B+
-            if self.level == 'A':
-                value = 3.3
-            elif self.level == 'H':
-                value = 3.795
-            elif self.level == 'AP':
-                value = 4.125
-        elif grade >= 81.5: # B
-            if self.level == 'A':
-                value = 3
-            elif self.level == 'H':
-                value = 3.45
-            elif self.level == 'AP':
-                value = 3.75
-        elif grade >= 79.5: # B-
-            if self.level == 'A':
-                value = 2.7
-            elif self.level == 'H':
-                value = 3.105
-            elif self.level == 'AP':
-                value = 3.375
-        elif grade >= 75.5: # C+
-            if self.level == 'A':
-                value = 2.3
-            elif self.level == 'H':
-                value = 2.645
-            elif self.level == 'AP':
-                value = 2.875
-        elif grade >= 71.5: # C
-            if self.level == 'A':
-                value = 2
-            elif self.level == 'H':
-                value = 2.3
-            elif self.level == 'AP':
-                value = 2.5
-        elif grade >= 69.5: # C-
-            if self.level == 'A':
-                value = 1.7
-            elif self.level == 'H':
-                value = 1.955
-            elif self.level == 'AP':
-                value = 2.125
-        elif grade >= 65.5: # D+
-            if self.level == 'A':
-                value = 1.3
-            elif self.level == 'H':
-                value = 1.338
-            elif self.level == 'AP':
-                value = 1.625
-        elif grade >= 61.5: # D
-            if self.level == 'A':
-                value = 1
-            elif self.level == 'H':
-                value = 1.15
-            elif self.level == 'AP':
-                value = 1.25
-        elif grade >= 59.5:  # D-
-            if self.level == 'A':
-                value = 0.7
-            elif self.level == 'H':
-                value = 0.805
-            elif self.level == 'AP':
-                value = 0.875
-        return value
+
+        letters = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"]
+        academic = [4.3, 4, 3.7, 3.3, 3, 2.7, 2.3, 2, 1.7, 1.3, 1, 0.7, 0]
+        honors = [4.945, 4.6, 4.255, 3.795, 3.45, 3.105, 2.645, 2.3, 1.955, 1.338, 1.15, 0.805, 0]
+        advanced = [5.375, 5, 4.625, 4.125, 3.75, 3.375, 2.875, 2.5, 2.125, 1.625, 1.25, 0.875, 0]
+
+        valueIndex = letters.index(self.getLetter(grade))
+
+        if self.level == 'H':
+            return honors[valueIndex]
+        elif self.level == 'AP':
+            return advanced[valueIndex]
+        else:
+            return academic[valueIndex]
     
-    def getLetter(self):
-        grade = self.getFinalGrade()
+    def getLetter(self, grade):
         letters = ["A", "B", "C", "D"]
         
         firstDigit = int(grade / 10)
@@ -171,6 +98,7 @@ class course:
                 return self.getValue(self.grades[quarter - 1]) * (self.credits / 4)
         else:
             return self.getValue(self.grades[quarter - 1]) * (self.credits / 2)
+    
     def getQuartCredits(self, semester):
         if self.fullYear == True:
             if 'labSem' in self.course:

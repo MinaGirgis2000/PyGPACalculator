@@ -1,15 +1,15 @@
-import classes, GPA
+import courses, GPA
 
-preGPA = classes.preGPA
-preCredits = classes.preCredits
+preGPA = courses.preGPA
+preCredits = courses.preCredits
 
-classes = [GPA.course(classes.class1), GPA.course(classes.class2), GPA.course(classes.class3), GPA.course(classes.class4), 
-           GPA.course(classes.class5), GPA.course(classes.class6), GPA.course(classes.class7), GPA.course(classes.class8)]
+courses = [GPA.course(courses.class1), GPA.course(courses.class2), GPA.course(courses.class3), GPA.course(courses.class4), 
+           GPA.course(courses.class5), GPA.course(courses.class6), GPA.course(courses.class7), GPA.course(courses.class8)]
 
 credits = [0, 0, 0] # [totalCredits, Sem1Credits, Sem2Credits]
 GPAs = [0, 0, 0, 0, 0] # [gpa, mp1GPA, mp2GPA, mp3GPA, mp4GPA]
 
-for course in classes:
+for course in courses:
     GPAs[0] += course.getGPA()
 
     GPAs[1] += course.getQuartGPA(1)
@@ -36,7 +36,7 @@ print("\nPrevious GPA:", str(preGPA) +
     "\nTotal Credits:", str(credits[0] + preCredits))
 
 print("\nCLASS\t\t\tGRADES\t\t MP1\t MP2\t MP3\t MP4\t Mid\t Final")
-for course in classes:
+for course in courses:
     print(course.name + ":\t", end="");
 
     if len(course.name) < 15:

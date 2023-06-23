@@ -46,7 +46,7 @@ class course:
         elif grade >= 9.5:
             letter = letters[letters.index(letter) - 1]
             return letter + "-"
-        elif letter != "F":
+        else:
             if grade < 1.5:
                 return letter + "-"
             elif grade >= 5.5 and firstDigit != 9:
@@ -54,8 +54,6 @@ class course:
             else:
                 return letter
         
-        return letter
-
     def getFinalGrade(self):
         nonZeros = 0
         total = 0
@@ -73,6 +71,10 @@ class course:
                     else:
                         return ((total / nonZeros) * 0.8) + (self.midterm * 0.1) + (self.final * 0.1)
                 return ((total / nonZeros) * 0.8) + (self.midterm * 0.1) + (self.final * 0.1)
+            elif self.midterm != 0 and nonZeros == 4:
+                return ((total / nonZeros) * (8/9)) + (self.midterm * (1/9))
+            elif self.midterm != 0 and nonZeros == 3:
+                return ((total / nonZeros) * (6/7)) + (self.midterm * (1/7))
             elif self.midterm != 0:
                 return ((total / nonZeros) * 0.8) + (self.midterm * 0.2)
             elif self.final != 0:

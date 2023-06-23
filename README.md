@@ -6,23 +6,23 @@ At its core, this GPA Calculator is a Python script that takes input from the us
 ### To run the script:
 - Open terminal
 - Make sure you have python installed by runnning:
-```bash
+```
 python -V
 ```
 - Access the folder where you have downloaded the script using the following command
   - You can also use your file manager to copy and paste the file location from the address bar
-```bash
+```
 cd (location of file)
 ```
 - Run:
-```bash
+```
 python main.py
 ```
 
 # DIRECTIONS:
 ### Previous GPA and Credits
 In classes.py, you will find:
-```python
+```
 preGPA = 0
 preCredits = 0
 ```
@@ -31,7 +31,7 @@ Set the values of those variables to the value of your previous GPA and credits 
 
 ### Class Information
 In classes.py, you will also find:
-```python
+```
 class# = {'name': "example-Name#",
           'credits': 0,
           'level': 'A',
@@ -69,7 +69,7 @@ Please fill out the following for each class:
 - Go into main.py
   - Add "GPA.course(classes.(name of variable))" into the classes array on line 6
   - Ex: GPA.course(classes.class9)
-```python
+```
 classes = [GPA.course(classes.class1), GPA.course(classes.class2), GPA.course(classes.class3), GPA.course(classes.class4), 
            GPA.course(classes.class5), GPA.course(classes.class6), GPA.course(classes.class7), GPA.course(classes.class8), GPA.course(classes.class9)]
 ```

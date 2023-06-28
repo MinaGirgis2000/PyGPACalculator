@@ -3,13 +3,13 @@ import courses, GPA
 preGPA = courses.preGPA
 preCredits = courses.preCredits
 
-courses = [GPA.course(courses.class1), GPA.course(courses.class2), GPA.course(courses.class3), GPA.course(courses.class4), 
+seminaries = [GPA.course(courses.class1), GPA.course(courses.class2), GPA.course(courses.class3), GPA.course(courses.class4), 
            GPA.course(courses.class5), GPA.course(courses.class6), GPA.course(courses.class7), GPA.course(courses.class8)]
 
 credits = [0, 0, 0] # [totalCredits, Sem1Credits, Sem2Credits]
 GPAs = [0, 0, 0, 0, 0] # [gpa, mp1GPA, mp2GPA, mp3GPA, mp4GPA]
 
-for course in courses:
+for course in seminaries:
     GPAs[0] += course.getGPA()
 
     GPAs[1] += course.getQuartGPA(1)
@@ -26,23 +26,38 @@ for quarter in range(len(GPAs)):
     if quarter > 0 and quarter < 5:
         print("Quarter", str(quarter), "GPA:", end=" ")
         if quarter < 3:
-            print(str(round(GPAs[quarter] / credits[1], 4)))
-        else:
-            print(str(round(GPAs[quarter] / credits[2], 4)))
+            try:
+                print(str(round(GPAs[quarter] / credits[1], 4)))
 
-print("\nPrevious GPA:", str(preGPA) + 
-    "\nThis Year's GPA:", str(round(GPAs[0] / credits[0], 4)) +
-    "\nCurrent GPA:", str(round((GPAs[0] + (preGPA * preCredits)) / (credits[0] + preCredits), 4)) +
-    "\nTotal Credits:", str(credits[0] + preCredits))
+            except ZeroDivisionError:
+                print("0.0000")
+        else:
+            try:
+                print(str(round(GPAs[quarter] / credits[2], 4)))
+
+            except ZeroDivisionError:
+                print("0.0000")
+
+print("\nPrevious GPA:", str(preGPA))
+
+try:
+    print("This Year's GPA:", str(round(GPAs[0] / credits[0], 4)) +
+          "\nCurrent GPA:", str(round((GPAs[0] + (preGPA * preCredits)) / (credits[0] + preCredits), 4)))
+
+except ZeroDivisionError:
+    print("This Year's GPA: 0.0000" +
+          "\nCurrent GPA: 0.0000")
+
+print("Total Credits:", str(credits[0] + preCredits))
 
 print("\nCLASS\t\t\tGRADES\t\t MP1\t MP2\t MP3\t MP4\t Mid\t Final")
-for course in courses:
+for course in seminaries:
     print(course.name + ":\t", end="");
 
     if len(course.name) < 15:
         print("\t", end="");
     
-    print(str(format(round(course.getFinalGrade(), 2), '.2f')) + "  " + course.letter, end="")
+    print(str(format(round(course.getFinalGrade(), 2), '.2f')) + "\t" + course.letter, end="")
     
     for quarter in range(0, len(course.grades)):
         if (quarter != len(course.grades) - 1):

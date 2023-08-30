@@ -1,4 +1,5 @@
 class course:
+    
     def __init__(self, course):
         self.course = course
         self.name = course['name']
@@ -32,6 +33,9 @@ class course:
     def getLetter(self, grade):
         letters = ["A", "B", "C", "D"]
         
+        if grade == 100:
+            return "A+"
+            
         firstDigit = int(grade / 10)
         if (grade >= 60):
             letter = letters[abs(firstDigit - 9)]

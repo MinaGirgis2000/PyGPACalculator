@@ -14,7 +14,7 @@ class1 = {'name': "example-Name1",
 class2 = {'name': "example-Name2",
           'credits': 0,
           'level': 'A',
-          'grades': [0, 0, 0, 0,],
+          'grades': [0, 0, 0, 0],
           'midterm': 0,
           'final': 0,
           'labSem': "none"

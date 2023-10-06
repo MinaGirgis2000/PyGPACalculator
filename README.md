@@ -32,7 +32,7 @@ Set the values of those variables to the value of your previous GPA and credits 
 ### Class Information
 In courses.py, you will also find:
 ``` python
-class* = {'name': "example-Name*",
+class0 = {'name': "example-Name0",
           'credits': 0,
           'level': 'A',
           'grades': [0, 0, 0, 0],

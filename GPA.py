@@ -31,18 +31,18 @@ class course:
             return academic[value_index]
     
     def get_letter(self, grade):
-        letters = ["A", "B", "C", "D"]
+        letters = ["A", "B", "C", "D", "F"]
         
-        if grade == 100:
+        if grade >= 100:
             return "A+"
             
         first_digit = int(grade / 10)
-        if (grade >= 60):
+        try:
             letter = letters[abs(first_digit - 9)]
-        else:
-            return "F";
+        except IndexError:
+            return "F"
 
-        while grade >= 10:
+        while grade > 10:
             grade -= 10
 
         if grade >= 7.5 and first_digit == 9:
@@ -55,8 +55,7 @@ class course:
                 return letter + "-"
             elif grade >= 5.5 and first_digit != 9:
                 return letter + "+"
-            else:
-                return letter
+            return letter
         
     def get_finalgrade(self):
         non_zeros = 0

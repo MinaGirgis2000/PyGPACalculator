@@ -1,5 +1,5 @@
-from math import ceil
 import courses, GPA
+from math import ceil
 
 preGPA = courses.preGPA
 preCredits = courses.preCredits

@@ -36,16 +36,16 @@ class course:
         if grade == 100:
             return "A+"
             
-        firstDigit = int(grade / 10)
+        first_digit = int(grade / 10)
         if (grade >= 60):
-            letter = letters[abs(firstDigit - 9)]
+            letter = letters[abs(first_digit - 9)]
         else:
             return "F";
 
         while grade >= 10:
             grade -= 10
 
-        if grade >= 7.5 and firstDigit == 9:
+        if grade >= 7.5 and first_digit == 9:
             return letter + "+"
         elif grade >= 9.5:
             letter = letters[letters.index(letter) - 1]
@@ -53,7 +53,7 @@ class course:
         else:
             if grade < 1.5:
                 return letter + "-"
-            elif grade >= 5.5 and firstDigit != 9:
+            elif grade >= 5.5 and first_digit != 9:
                 return letter + "+"
             else:
                 return letter
@@ -76,8 +76,7 @@ class course:
                     elif self.course['labSem'] == "second" or self.course['labSem'] == "2nd":
                         return ((total / non_zeros) * 0.8) + (self.midterm * 0.08) + (self.final * 0.12)
                     
-                    else:
-                        return ((total / non_zeros) * 0.8) + (self.midterm * 0.1) + (self.final * 0.1)
+                    return ((total / non_zeros) * 0.8) + (self.midterm * 0.1) + (self.final * 0.1)
                     
                 return ((total / non_zeros) * 0.8) + (self.midterm * 0.1) + (self.final * 0.1)
             
@@ -93,10 +92,8 @@ class course:
             elif self.final != 0:
                 return ((total / non_zeros) * 0.8) + (self.final * 0.2)
             
-            else:
-                return total / non_zeros
-        else:
-            return 0
+            return total / non_zeros
+        return 0
 
     def get_gpa(self):
         return self.get_value(self.get_finalgrade()) * self.credits
@@ -110,13 +107,10 @@ class course:
                 
                 elif ((self.course['labSem'] == "second" or self.course['labSem'] == '2nd') and quarter >= 3) or ((self.course['labSem'] == "first" or self.course['labSem'] == '1st') and quarter <= 2):
                     return self.get_value(self.grades[quarter - 1]) * 1.25
-                
-                else:
-                    return self.get_value(self.grades[quarter - 1]) * (self.credits / 4)
-            else:
-                return self.get_value(self.grades[quarter - 1]) * (self.credits / 4)
-        else:
-            return self.get_value(self.grades[quarter - 1]) * (self.credits / 2)
+                            
+            return self.get_value(self.grades[quarter - 1]) * (self.credits / 4)
+        
+        return self.get_value(self.grades[quarter - 1]) * (self.credits / 2)
     
     def get_quartcredits(self, semester):
         if self.full_year == True:

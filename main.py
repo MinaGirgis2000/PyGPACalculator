@@ -7,36 +7,30 @@ preCredits = courses.preCredits
 seminaries = [GPA.course(courses.class1), GPA.course(courses.class2), GPA.course(courses.class3), GPA.course(courses.class4), 
            GPA.course(courses.class5), GPA.course(courses.class6), GPA.course(courses.class7), GPA.course(courses.class8)]
 
-credits = [0, 0, 0] # [totalCredits, Sem1Credits, Sem2Credits]
+credits = [0, 0, 0, 0, 0] # [totalCredits, mp1Credits, mp2Credits, mp3Credits, mp4Credits]
 GPAs = [0, 0, 0, 0, 0] # [gpa, mp1GPA, mp2GPA, mp3GPA, mp4GPA]
 
 for course in seminaries:
     GPAs[0] += course.get_gpa()
-
     GPAs[1] += course.get_quartgpa(1)
     GPAs[2] += course.get_quartgpa(2)
     GPAs[3] += course.get_quartgpa(3)
     GPAs[4] += course.get_quartgpa(4)
 
     credits[0] += course.credits
-    credits[1] += course.get_quartcredits(1) # Credits for Quarters 1 & 2 are always the same
-    credits[2] += course.get_quartcredits(3) # Credits for Quarters 3 & 4 are always the same
+    if course.grades[0] != 0: credits[1] += course.get_quartcredits(1)
+    if course.grades[1] != 0: credits[2] += course.get_quartcredits(2)
+    if course.grades[2] != 0: credits[3] += course.get_quartcredits(3)
+    if course.grades[3] != 0: credits[4] += course.get_quartcredits(4)
 
 print("\nQUARTER GPA:")
 for quarter in range(1, len(GPAs)):
     print("Quarter", str(quarter), "GPA:", end=" ")
-    if quarter < 3:
-        try:
-            print(str(round(GPAs[quarter] / credits[1], 4)))
+    try:
+        print(str(round(GPAs[quarter] / credits[quarter], 4)))
 
-        except ZeroDivisionError:
-            print("0.0000")
-    else:
-        try:
-            print(str(round(GPAs[quarter] / credits[2], 4)))
-
-        except ZeroDivisionError:
-            print("0.0000")
+    except ZeroDivisionError:
+        print("0.0000")
 
 print("\nPrevious GPA:", str(preGPA))
 
@@ -44,8 +38,8 @@ try:
     tempGPA, tempCredits = 0, 0
     for quarter in range(1, len(GPAs)):
         if GPAs[quarter] != 0:
-            tempGPA += GPAs[quarter] * credits[ceil(quarter/2)]
-            tempCredits += credits[ceil(quarter/2)]
+            tempGPA += GPAs[quarter] * credits[quarter]
+            tempCredits += credits[quarter]
     tempGPA /= tempCredits
 
     print("This Year's GPA:", str(round(tempGPA / tempCredits, 4)) +

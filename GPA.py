@@ -98,18 +98,7 @@ class course:
         return self.get_value(self.get_finalgrade()) * self.credits
 
     def get_quartgpa(self, quarter):
-        if self.full_year == True:
-            if 'labSem' in self.course:
-                
-                if ((self.course['labSem'] == "first" or self.course['labSem'] == '1st') and quarter <= 2) or ((self.course['labSem'] == "second" or self.course['labSem'] == '2nd') and quarter >= 3):
-                    return self.get_value(self.grades[quarter - 1]) * 2.5
-                
-                elif ((self.course['labSem'] == "second" or self.course['labSem'] == '2nd') and quarter >= 3) or ((self.course['labSem'] == "first" or self.course['labSem'] == '1st') and quarter <= 2):
-                    return self.get_value(self.grades[quarter - 1]) * 1.25
-                            
-            return self.get_value(self.grades[quarter - 1]) * (self.credits / 4)
-        
-        return self.get_value(self.grades[quarter - 1]) * (self.credits / 2)
+        return self.get_value(self.grades[quarter - 1]) * self.get_quartcredits(quarter)
     
     def get_quartcredits(self, semester):
         if self.full_year == True:

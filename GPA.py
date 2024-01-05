@@ -65,7 +65,7 @@ class course:
             if grade != 0:
                 non_zeros += 1
             total += grade
-        
+            
         if non_zeros != 0:
             if self.midterm != 0 and self.final != 0:
                 if 'labSem' in self.course:
@@ -93,12 +93,6 @@ class course:
             
             return total / non_zeros
         return 0
-
-    def get_gpa(self):
-        return self.get_value(self.get_finalgrade()) * self.credits
-
-    def get_quartgpa(self, quarter):
-        return self.get_value(self.grades[quarter - 1]) * self.get_quartcredits(quarter)
     
     def get_quartcredits(self, semester):
         if self.full_year == True:

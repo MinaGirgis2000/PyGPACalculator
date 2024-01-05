@@ -1,4 +1,4 @@
-import courses, GPA
+import my_courses as courses, GPA
 from math import ceil
 
 preGPA = courses.preGPA
@@ -11,17 +11,16 @@ credits = [0, 0, 0, 0, 0] # [totalCredits, mp1Credits, mp2Credits, mp3Credits, m
 GPAs = [0, 0, 0, 0, 0] # [gpa, mp1GPA, mp2GPA, mp3GPA, mp4GPA]
 
 for course in seminaries:
-    GPAs[0] += course.get_gpa()
-    GPAs[1] += course.get_quartgpa(1)
-    GPAs[2] += course.get_quartgpa(2)
-    GPAs[3] += course.get_quartgpa(3)
-    GPAs[4] += course.get_quartgpa(4)
-
+    GPAs[0] += course.get_value(course.get_finalgrade())
     credits[0] += course.credits
-    if course.grades[0] != 0: credits[1] += course.get_quartcredits(1)
-    if course.grades[1] != 0: credits[2] += course.get_quartcredits(2)
-    if course.grades[2] != 0: credits[3] += course.get_quartcredits(3)
-    if course.grades[3] != 0: credits[4] += course.get_quartcredits(4)
+    
+    for quarter in range(1, len(GPAs)):
+        GPAs[quarter] += course.get_value(course.grades[quarter-1])
+        if course.grades[quarter-1] != 0:
+            if quarter < 3:
+                credits[quarter] += course.get_quartcredits(1)
+            else:
+                credits[quarter] += course.get_quartcredits(2)
 
 print("\nQUARTER GPA:")
 for quarter in range(1, len(GPAs)):
@@ -40,14 +39,13 @@ try:
         if GPAs[quarter] != 0:
             tempGPA += GPAs[quarter] * credits[quarter]
             tempCredits += credits[quarter]
-    tempGPA /= tempCredits
 
     print("This Year's GPA:", str(round(tempGPA / tempCredits, 4)) +
-          "\nCurrent GPA:", str(round((tempGPA + (preGPA * preCredits)) / (tempCredits + preCredits), 4)))
+          "\nCummulative GPA (Weighted):", str(round((tempGPA + (preGPA * preCredits)) / (tempCredits + preCredits), 4)))
 
 except ZeroDivisionError:
     print("This Year's GPA: 0.0000" +
-          "\nCurrent GPA: 0.0000")
+          "\nCummulative GPA (Weighted): 0.0000")
 
 print("Total Credits:", str(credits[0] + preCredits))
 

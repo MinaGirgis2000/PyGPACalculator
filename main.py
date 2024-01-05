@@ -37,7 +37,7 @@ try:
     tempGPA, tempCredits = 0, 0
     for quarter in range(1, len(GPAs)):
         if GPAs[quarter] != 0:
-            tempGPA += GPAs[quarter] * credits[quarter]
+            tempGPA += GPAs[quarter]
             tempCredits += credits[quarter]
 
     print("This Year's GPA:", str(round(tempGPA / tempCredits, 4)) +
